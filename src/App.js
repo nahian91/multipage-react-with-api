@@ -3,6 +3,10 @@ import '../src/assets/css/style.css'
 import Header from '../src/components/Header'
 import Bannar from './components/Bannar'
 import About from './components/About'
+import Skills from './components/Skills'
+import Services from './components/Services';
+import Counter from './components/Counter';
+import Team from './components/Team';
 
 function App() {
   return (
@@ -10,6 +14,10 @@ function App() {
       <Header/>
       <Bannar/>
       <About/>
+      <Skills/>
+      <Services/>
+      <Counter/>
+      <Team/>
     </div>
   );
 }

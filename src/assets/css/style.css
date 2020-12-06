@@ -26,6 +26,22 @@ body{
   .navbar.navbar-expand-lg.navbar-light {
 	width: 100%;
 }
+.bg{
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+.bg:before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #333;
+  opacity: .75;
+}
+
 .slick-arrow {
 	display: none !important;
 }
@@ -110,11 +126,11 @@ body{
     text-transform: capitalize;
     font-size: 32px;
     font-weight: 600;
-    display: ;
   }
   .sectionTitle {
     align-items: center;
     position: relative;
+    margin-bottom: 80px;
   }
   .sectionTitle p {
     margin-bottom: 0;
@@ -144,3 +160,189 @@ body{
     top: 70px;
     transform: translateY(-50%) rotate(90deg);
   }
+  
+.singleAboutContent h4 {
+  font-size: 20px;
+  text-transform: capitalize;
+  position: relative;
+}
+.singleAboutContent {
+  position: relative;
+}
+.singleAbout {
+  position: relative;
+  padding-left: 60px;
+  margin-bottom: 30px;
+}
+.singleAbout svg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid #635CDB;
+  color: #635CDB;
+  width: 40px !important;
+  height: 40px;
+  display: block !important;
+  padding: 10px;
+  border-radius: 50%;
+}
+.singleAboutContent h4:before {
+  position: absolute;
+  content: "";
+  width: 40px;
+  height: 2px;
+  background-color: #635CDB;
+  bottom: -5px;
+}
+.aboutLeft h4 {
+  font-size: 28px;
+  text-transform: capitalize;
+  font-weight: 600;
+  position: relative;
+}
+.aboutLeft h4:before {
+  position: absolute;
+  content: "";
+  width: 40px;
+  height: 2px;
+  background-color: ;
+  background-color: #635CDB;
+  bottom: -5px;
+}
+.skillsArea {
+	background-image: url('../images/bg-counter.jpg');
+}
+
+.singleProgress .progress-bar {
+  background-color: #635CDB !important;
+}
+.singleProgress .progress {
+  margin-bottom: 20px;
+}
+.skillTitle h4 {
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.singleProgress h4 {
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.singleSkill .accordion > .card > .card-header {
+	background-color: #635CDB;
+	color: #fff;
+}
+.singleSkill .card {
+	border: 0;
+	border-radius: 0;
+}
+
+.singleService {
+  text-align: center;
+  box-shadow: 0px 10px 30px 0px rgba(205, 205, 205, 0.33);
+  padding: 20px 15px;
+  margin-bottom: 30px;
+}
+.singleService svg {
+  font-size: 25px;
+  color: #635CDB;
+}
+.singleService h4 {
+  text-transform: capitalize;
+  font-weight: 600;
+  margin: 26px 0;
+}
+.singleService p {
+  font-size: 15px;
+}
+
+.counterArea .col-lg-3:nth-child(even) .singleCounter {
+  background-color: #292e47;
+}
+.counterArea .col-lg-3 {
+  padding: 0;
+}
+.singleCounter {
+  padding: 60px 25px;
+  text-align: center;
+}
+.counterArea .col-lg-3:nth-child(odd) .singleCounter {
+  background-color: #24283F;
+}
+.singleCounter {
+  display: flex;
+  justify-content: center;
+}
+.singleCounter {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  justify-content: center;
+}
+.singleCounter svg {
+  font-size: 26px;
+  margin-right: 20px;
+}
+.singleCounter h4 {
+  font-size: 20px;
+}
+.singleCounter span {
+  font-weight: 700;
+  font-size: 35px;
+}
+.singleTeam img {
+  width: 100%;
+}
+.singleTeam {
+  position: relative;
+}
+.teamOverlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+}
+
+.teamContent {
+  text-align: center;
+}
+.teamContent h4 {
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 28px;
+  color: #fff;
+}
+.teamContent h4 span {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 10px 0;
+}
+.teamOverlay:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  opacity: .75;
+  z-index: -1;
+}
+.teamContent svg {
+  color: #fff;
+  margin: 0 10px;
+}
+.singleTeam:hover .teamOverlay {
+  opacity: 1;
+  visibility: visible;
+}
