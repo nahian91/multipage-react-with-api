@@ -1,24 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../src/assets/css/style.css'
-import Header from '../src/components/Header'
-import Bannar from './components/Bannar'
-import About from './components/About'
-import Skills from './components/Skills'
-import Services from './components/Services';
-import Counter from './components/Counter';
-import Team from './components/Team';
+import AppRoute from '../src/router/AppRoute'
+import {BrowserRouter} from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <Bannar/>
-      <About/>
-      <Skills/>
-      <Services/>
-      <Counter/>
-      <Team/>
-    </div>
+    <BrowserRouter>
+      <AppRoute/>
+    </BrowserRouter>
   );
 }
 

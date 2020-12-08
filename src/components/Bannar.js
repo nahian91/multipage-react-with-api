@@ -18,7 +18,7 @@ export default class Bannar extends Component {
           };
         return (
             <Fragment>
-              <Container fluid={true} style={{padding: 0}} > 
+              <Container fluid={true} className="bannarArea" style={{padding: 0}} > 
                 <Slider {...settings}>
                     <div className="singleSlide">
                         <img src={slide1}/>
