@@ -1,10 +1,39 @@
 import React, { Component, Fragment } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLaptop, faCog, faMobileAlt, faMagic, faPencilAlt, faLightbulb} from '@fortawesome/free-solid-svg-icons'
+import { faLightbulb} from '@fortawesome/free-solid-svg-icons'
+import AppURL from '../RestAPI/AppURL'
+import RestClient from '../RestAPI/RestClient'
 
 export default class Services extends Component {
+
+    constructor(){
+        super();
+
+        this.state={
+            myData:[]
+        }
+    }
+
+    componentDidMount(){
+        RestClient.GetRequest(AppURL.Services).then(result=>{
+            this.setState({myData:result})
+        });
+    }
+
     render() {
+        const servicesList = this.state.myData;
+        const services = servicesList.map(servicesList => {
+            return <Col lg={4}>
+            <div className="singleService">
+                <FontAwesomeIcon icon={faLightbulb} />
+                <h4>{servicesList.title}</h4>
+                <p>{servicesList.description}</p>
+            </div>
+        </Col>
+        });
+
+
         return (
             <Fragment>
                 <Container className="pt-100 pb-100">
@@ -17,48 +46,7 @@ export default class Services extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={4}>
-                            <div className="singleService">
-                                <FontAwesomeIcon icon={faLaptop} />
-                                <h4>web design</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque non pariatur fuga maxime, alias nostrum earum quia reiciendis impedit corporis!</p>
-                            </div>
-                        </Col>
-                        <Col lg={4}>
-                            <div className="singleService">
-                                <FontAwesomeIcon icon={faCog} />
-                                <h4>Web Development</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque non pariatur fuga maxime, alias nostrum earum quia reiciendis impedit corporis!</p>
-                            </div>
-                        </Col>
-                        <Col lg={4}>
-                            <div className="singleService">
-                                <FontAwesomeIcon icon={faMobileAlt} />
-                                <h4>responsive design</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque non pariatur fuga maxime, alias nostrum earum quia reiciendis impedit corporis!</p>
-                            </div>
-                        </Col>
-                        <Col lg={4}>
-                            <div className="singleService">
-                                <FontAwesomeIcon icon={faMagic} />
-                                <h4>graphic design</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque non pariatur fuga maxime, alias nostrum earum quia reiciendis impedit corporis!</p>
-                            </div>
-                        </Col>
-                        <Col lg={4}>
-                            <div className="singleService">
-                                <FontAwesomeIcon icon={faPencilAlt} />
-                                <h4>creative design</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque non pariatur fuga maxime, alias nostrum earum quia reiciendis impedit corporis!</p>
-                            </div>
-                        </Col>
-                        <Col lg={4}>
-                            <div className="singleService">
-                                <FontAwesomeIcon icon={faLightbulb} />
-                                <h4>branding</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque non pariatur fuga maxime, alias nostrum earum quia reiciendis impedit corporis!</p>
-                            </div>
-                        </Col>
+                        {services}
                     </Row>
                 </Container>
             </Fragment>

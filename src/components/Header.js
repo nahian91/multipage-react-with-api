@@ -31,6 +31,7 @@ export default class Header extends Component {
                 </Container>
                 <Container>
                     <Row>
+                        <title>{this.props.title} - Halim Multipurpose Theme</title>
                         <Navbar collapseOnSelect expand="lg">
                             <Navbar.Brand><NavLink to="/">Halim</NavLink></Navbar.Brand>
                             <Navbar.Toggle aria-controls="responsive-navbar-nav" />

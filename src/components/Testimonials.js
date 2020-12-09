@@ -1,11 +1,25 @@
 import React, { Component, Fragment } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import Slider from "react-slick";
-import testimonial1 from '../assets/images/01.png'
-import testimonial2 from '../assets/images/02.png'
-import testimonial3 from '../assets/images/04.png'
+import AppURL from '../RestAPI/AppURL'
+import RestClient from '../RestAPI/RestClient'
 
 export default class Testimonials extends Component {
+
+    constructor(){
+        super();
+
+        this.state={
+            myData:[]
+        }
+    }
+
+    componentDidMount(){
+        RestClient.GetRequest(AppURL.Testimonials).then(result=>{
+            this.setState({myData:result})
+        });
+    }
+
     render() {
         var settings1 = {
             dots: false,
@@ -15,7 +29,17 @@ export default class Testimonials extends Component {
             speed: 500,
             slidesToShow: 3,
             slidesToScroll: 1
-          };
+        };
+
+        const testimonialsList = this.state.myData;
+        const testimonials = testimonialsList.map(testimonialsList => {
+            return <div className="singleTestimonial">
+                <img src={testimonialsList.image} alt=""/>
+                <p>{testimonialsList.description}</p>
+                <h4>{testimonialsList.name} <span>{testimonialsList.designation}</span></h4>
+            </div>
+        });
+
         return (
             <Fragment>
                 <Container fluid className="pt-100 pb-100 testimonialsArea bg">
@@ -31,26 +55,7 @@ export default class Testimonials extends Component {
                         <Row>
                             <Col lg={12}>
                                 <Slider {...settings1}>
-                                    <div className="singleTestimonial">
-                                        <img src={testimonial1} alt=""/>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea autem voluptatibus labore ullam impedit ex at magnam nesciunt, placeat suscipit!</p>
-                                        <h4>john doe <span>web developer</span></h4>
-                                    </div>
-                                    <div className="singleTestimonial">
-                                        <img src={testimonial2} alt=""/>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea autem voluptatibus labore ullam impedit ex at magnam nesciunt, placeat suscipit!</p>
-                                        <h4>john doe <span>web developer</span></h4>
-                                    </div>
-                                    <div className="singleTestimonial">
-                                        <img src={testimonial3} alt=""/>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea autem voluptatibus labore ullam impedit ex at magnam nesciunt, placeat suscipit!</p>
-                                        <h4>john doe <span>web developer</span></h4>
-                                    </div>
-                                    <div className="singleTestimonial">
-                                        <img src={testimonial2} alt=""/>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea autem voluptatibus labore ullam impedit ex at magnam nesciunt, placeat suscipit!</p>
-                                        <h4>john doe <span>web developer</span></h4>
-                                    </div>
+                                    {testimonials}
                                 </Slider>
                             </Col>
                         </Row>

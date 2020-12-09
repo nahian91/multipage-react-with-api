@@ -1,13 +1,46 @@
 import React, { Component, Fragment } from 'react'
 import { Container, Row, Col} from 'react-bootstrap'
-import team1 from '../assets/images/1.jpg'
-import team2 from '../assets/images/2.jpg'
-import team3 from '../assets/images/3.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faFacebookF, faTwitter, faInstagram, faYoutube} from '@fortawesome/free-brands-svg-icons'
+import AppURL from '../RestAPI/AppURL'
+import RestClient from '../RestAPI/RestClient'
 
 export default class Team extends Component {
+
+    constructor(){
+        super();
+
+        this.state={
+            myData:[]
+        }
+    }
+
+    componentDidMount(){
+        RestClient.GetRequest(AppURL.Teams).then(result=>{
+            this.setState({myData:result})
+        });
+    }
+
     render() {
+
+        const teamsList = this.state.myData;
+        const teams = teamsList.map(teamsList => {
+            return <Col lg={4}>
+                <div className="singleTeam">
+                    <img src={teamsList.image}/>
+                    <div className="teamOverlay">
+                        <div className="teamContent">
+                            <h4>{teamsList.name} <span>{teamsList.designation}</span></h4>
+                            <a href={teamsList.fb_link}><FontAwesomeIcon icon={faFacebookF} /></a>
+                            <a href={teamsList.tw_link}><FontAwesomeIcon icon={faTwitter} /></a>
+                            <a href={teamsList.insta_link}><FontAwesomeIcon icon={faInstagram} /></a>
+                            <a href={teamsList.youtube_link}><FontAwesomeIcon icon={faYoutube} /></a>
+                        </div>
+                    </div>
+                </div>
+            </Col>
+        });
+
         return (
             <Fragment>
                 <Container className="pt-100 pb-100">
@@ -20,48 +53,7 @@ export default class Team extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={4}>
-                            <div className="singleTeam">
-                                <img src={team1} alt=""/>
-                                <div className="teamOverlay">
-                                    <div className="teamContent">
-                                        <h4>John Doe <span>web developer</span></h4>
-                                        <FontAwesomeIcon icon={faFacebookF} />
-                                        <FontAwesomeIcon icon={faTwitter} />
-                                        <FontAwesomeIcon icon={faInstagram} />
-                                        <FontAwesomeIcon icon={faYoutube} />
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={4}>
-                            <div className="singleTeam">
-                                <img src={team2} alt=""/>
-                                <div className="teamOverlay">
-                                    <div className="teamContent">
-                                        <h4>John Doe <span>web developer</span></h4>
-                                        <FontAwesomeIcon icon={faFacebookF} />
-                                        <FontAwesomeIcon icon={faTwitter} />
-                                        <FontAwesomeIcon icon={faInstagram} />
-                                        <FontAwesomeIcon icon={faYoutube} />
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={4}>
-                            <div className="singleTeam">
-                                <img src={team3} alt=""/>
-                                <div className="teamOverlay">
-                                    <div className="teamContent">
-                                        <h4>John Doe <span>web developer</span></h4>
-                                        <FontAwesomeIcon icon={faFacebookF} />
-                                        <FontAwesomeIcon icon={faTwitter} />
-                                        <FontAwesomeIcon icon={faInstagram} />
-                                        <FontAwesomeIcon icon={faYoutube} />
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
+                        {teams}
                     </Row>
                 </Container>
             </Fragment>

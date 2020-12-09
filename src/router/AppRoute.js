@@ -8,6 +8,8 @@ import BlogPage from '../pages/BlogPage'
 import GalleryPage from '../pages/GalleryPage'
 import ContactPage from '../pages/ContactPage'
 import SingleBlogPage from '../pages/SingleBlogPage'
+import PrivacyPage from '../pages/PrivacyPage'
+import TermsPage from '../pages/TermsPage'
 
 export default class AppRoute extends Component {
     render() {
@@ -21,6 +23,8 @@ export default class AppRoute extends Component {
                 <Route exact path="/gallery" component={GalleryPage}/>
                 <Route exact path="/contact" component={ContactPage}/>
                 <Route exact path="/single-blog" component={SingleBlogPage}/>
+                <Route exact path="/PrivacyPolicy" component={PrivacyPage}/>
+                <Route exact path="/TermsConditions" component={TermsPage}/>
             </Switch>
         )
     }
